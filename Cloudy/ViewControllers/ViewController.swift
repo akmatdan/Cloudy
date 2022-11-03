@@ -88,22 +88,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var latitude : CLLocationDegrees!
     var longitude: CLLocationDegrees!
     
+    let menuVC = MenuViewController()
+    let homeVC = HomeViewController()
+    var navVC: UINavigationController?
+    
+    enum MenuState {
+        case opened
+        case closed
+    }
+    
+    var menuState: MenuState = .closed
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-         // Do any additional setup after loading the view.
-        view.backgroundColor = .systemBackground
         
-         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .done, target: self, action: #selector(handleAddPlaceButton)), UIBarButtonItem(image: UIImage(systemName: "thermometer"), style: .done, target: self, action: #selector(handleShowForecast)),UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .done, target: self, action: #selector(handleRefresh))]
-         
-          locationManager.delegate = self
-          locationManager.desiredAccuracy = kCLLocationAccuracyBest
-          locationManager.requestWhenInUseAuthorization()
-          locationManager.startUpdatingLocation()
+        view.backgroundColor = .systemGray6
+        addChildVCs()
         
-        transparentNavigationBar()
-          
-        setupViews()
-        layoutViews()
+    }
+    
+    private func addChildVCs() {
+        // Menu
+        addChild(menuVC)
+        view.addSubview(menuVC.view)
+        menuVC.didMove(toParent: self)
+        
+        // Home
+        homeVC.delegate = self
+        let navVC = UINavigationController(rootViewController: homeVC)
+        addChild(navVC)
+        view.addSubview(navVC.view)
+        navVC.didMove(toParent: self)
+        self.navVC = navVC
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -207,7 +223,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     }
     
+    func transparentNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+        title: "", style: .plain, target: nil, action: nil)
+    }
+    
     //MARK: - Handlers
+    
     @objc func handleAddPlaceButton() {
         let alertController = UIAlertController(title: "Add City", message: "", preferredStyle: .alert)
          alertController.addTextField { (textField : UITextField!) -> Void in
@@ -223,7 +248,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             print("Cancel")
          })
       
-
          alertController.addAction(saveAction)
          alertController.addAction(cancelAction)
 
@@ -238,15 +262,4 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let city = UserDefaults.standard.string(forKey: "SelectedCity") ?? ""
         loadData(city: city)
     }
-    
-
-    func transparentNavigationBar() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        navigationItem.backBarButtonItem = UIBarButtonItem(
-        title: "", style: .plain, target: nil, action: nil)
-       
-    }
-    
 }

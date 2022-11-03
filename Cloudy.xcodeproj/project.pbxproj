@@ -21,6 +21,9 @@
 		E3B4E0CB290CDEF800AB7D52 /* Cloudy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3B4E0C9290CDEF800AB7D52 /* Cloudy.xcdatamodeld */; };
 		E3B4E0CD290CDEFE00AB7D52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B4E0CC290CDEFE00AB7D52 /* Assets.xcassets */; };
 		E3B4E0D0290CDEFE00AB7D52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B4E0CE290CDEFE00AB7D52 /* LaunchScreen.storyboard */; };
+		E3CEF80B2913B5B8009B8BDC /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEF80A2913B5B8009B8BDC /* MenuViewController.swift */; };
+		E3CEF80D2913B78C009B8BDC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEF80C2913B78C009B8BDC /* HomeViewController.swift */; };
+		E3CEF80F2913C592009B8BDC /* AnimateMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEF80E2913C592009B8BDC /* AnimateMenuButton.swift */; };
 		E3E4321A290FCCBF00602658 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E43219290FCCBF00602658 /* NetworkManagerProtocol.swift */; };
 		E3E4321C290FCD9000602658 /* WeatherNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E4321B290FCD9000602658 /* WeatherNetworkManager.swift */; };
 		E3E4321E290FD0DA00602658 /* NetworkProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E4321D290FD0DA00602658 /* NetworkProperties.swift */; };
@@ -45,6 +48,9 @@
 		E3B4E0CC290CDEFE00AB7D52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3B4E0CF290CDEFE00AB7D52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3B4E0D1290CDEFE00AB7D52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3CEF80A2913B5B8009B8BDC /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		E3CEF80C2913B78C009B8BDC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E3CEF80E2913C592009B8BDC /* AnimateMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateMenuButton.swift; sourceTree = "<group>"; };
 		E3E43219290FCCBF00602658 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
 		E3E4321B290FCD9000602658 /* WeatherNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkManager.swift; sourceTree = "<group>"; };
 		E3E4321D290FD0DA00602658 /* NetworkProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProperties.swift; sourceTree = "<group>"; };
@@ -70,17 +76,20 @@
 				E3845FDE2910F0A900A83C9A /* ImageViewExtension.swift */,
 				E3845FEA2910FC2F00A83C9A /* DateExtension.swift */,
 				E3845FEC2910FC4E00A83C9A /* IntExtension.swift */,
+				E3CEF80E2913C592009B8BDC /* AnimateMenuButton.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		E3845FE02910F95600A83C9A /* Controller */ = {
+		E3845FE02910F95600A83C9A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				E3B4E0C4290CDEF800AB7D52 /* ViewController.swift */,
 				E3845FE12910F97E00A83C9A /* ForecastViewController.swift */,
+				E3CEF80A2913B5B8009B8BDC /* MenuViewController.swift */,
+				E3CEF80C2913B78C009B8BDC /* HomeViewController.swift */,
 			);
-			path = Controller;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		E3845FE32910F9C300A83C9A /* Cell */ = {
@@ -113,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				E3845FE32910F9C300A83C9A /* Cell */,
-				E3845FE02910F95600A83C9A /* Controller */,
+				E3845FE02910F95600A83C9A /* ViewControllers */,
 				E3845FDB2910EEA000A83C9A /* Extension */,
 				E3E4321F290FD31700602658 /* Model */,
 				E3E43218290FCC6A00602658 /* NetworkManager */,
@@ -218,9 +227,11 @@
 			files = (
 				E3E43221290FD32800602658 /* Forecast.swift in Sources */,
 				E3845FDD2910EEC700A83C9A /* KelvinToCelciusConverter.swift in Sources */,
+				E3CEF80D2913B78C009B8BDC /* HomeViewController.swift in Sources */,
 				E3E4321C290FCD9000602658 /* WeatherNetworkManager.swift in Sources */,
 				E3E4321E290FD0DA00602658 /* NetworkProperties.swift in Sources */,
 				E3B4E0C5290CDEF800AB7D52 /* ViewController.swift in Sources */,
+				E3CEF80F2913C592009B8BDC /* AnimateMenuButton.swift in Sources */,
 				E3845FE22910F97E00A83C9A /* ForecastViewController.swift in Sources */,
 				E3845FE92910FA1800A83C9A /* HourlyCell.swift in Sources */,
 				E3845FDF2910F0A900A83C9A /* ImageViewExtension.swift in Sources */,
@@ -229,6 +240,7 @@
 				E3E43223290FD35C00602658 /* Weather.swift in Sources */,
 				E3B4E0C1290CDEF800AB7D52 /* AppDelegate.swift in Sources */,
 				E3845FED2910FC4E00A83C9A /* IntExtension.swift in Sources */,
+				E3CEF80B2913B5B8009B8BDC /* MenuViewController.swift in Sources */,
 				E3B4E0C3290CDEF800AB7D52 /* SceneDelegate.swift in Sources */,
 				E3E4321A290FCCBF00602658 /* NetworkManagerProtocol.swift in Sources */,
 				E3845FE52910F9D400A83C9A /* ForecastCell.swift in Sources */,
