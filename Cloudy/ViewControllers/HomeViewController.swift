@@ -22,8 +22,19 @@ class HomeViewController: UIViewController {
         title = "Weather"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "bar")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(didTapMenuButton))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "search")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(didTapSearchButton))
+        
+        transparentNavigationBar()
     }
     
+    
+    func transparentNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+        title: "", style: .plain, target: nil, action: nil)
+    }
+
     @objc func didTapMenuButton() {
         delegate?.didTapMenuButton()
     }

@@ -84,7 +84,7 @@ class ForecastViewController : UIViewController, UICollectionViewDataSource, UIC
        let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: layoutGroupSize, subitems: [layoutItem])
 
        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-      // layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
+       layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
        return layoutSection
     }
 }
