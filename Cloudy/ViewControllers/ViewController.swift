@@ -10,11 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var ld = MenuViewController()
+    var navVC: UINavigationController?
     
     let menuVC = MenuViewController()
-    let homeVC = HomeViewController()
-    var navVC: UINavigationController?
+    
+    let homeVC = MainViewController()
+    let forecastVC = ForecastViewController()
+    let mapVC = MapViewController()
     
     enum MenuState {
         case opened
@@ -22,14 +24,12 @@ class ViewController: UIViewController {
     }
     
     var menuState: MenuState = .closed
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .systemCyan
         addChildVCs()
-        
     }
     
     private func addChildVCs() {
@@ -38,8 +38,7 @@ class ViewController: UIViewController {
         addChild(menuVC)
         view.addSubview(menuVC.view)
         menuVC.didMove(toParent: self)
-        
-        
+                
         // Home
         homeVC.delegate = self
         let navVC = UINavigationController(rootViewController: homeVC)
@@ -52,7 +51,7 @@ class ViewController: UIViewController {
 
     //MARK: - Extensions
 
-extension ViewController: HomeViewControllerDelegate {
+extension ViewController: MainViewControllerDelegate {
     
     func didTapMenuButton() {
         toggleMenu(completion: nil)

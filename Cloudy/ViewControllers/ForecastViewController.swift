@@ -16,9 +16,10 @@ class ForecastViewController : UIViewController, UICollectionViewDataSource, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
-        self.title = "Forecast"
+        view.backgroundColor = .systemBackground
+        title = "Forecast"
         
+        currentPage()
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.register(ForecastCell.self, forCellWithReuseIdentifier: ForecastCell.reuseIdentifier)
@@ -32,7 +33,7 @@ class ForecastViewController : UIViewController, UICollectionViewDataSource, UIC
         print("City Forecast:", city)
         networkManager.fetchNextFiveWeatherForecast(city: city) { (forecast) in
             self.forecastData = forecast
-            print("Total Count:", forecast.count)
+            
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -44,9 +45,12 @@ class ForecastViewController : UIViewController, UICollectionViewDataSource, UIC
         forecastData = []
     }
     
+    func currentPage() {
+        print("Current Page: Forecast page")
+    }
     
     func setupViews() {
-        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -84,7 +88,7 @@ class ForecastViewController : UIViewController, UICollectionViewDataSource, UIC
        let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: layoutGroupSize, subitems: [layoutItem])
 
        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-       layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
+      // layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
        return layoutSection
     }
 }

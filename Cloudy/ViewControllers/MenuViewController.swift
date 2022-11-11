@@ -40,7 +40,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         return label
     }()
     
-    private let currentLocation: UILabel = {
+    let currentLocation: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Loading..."
@@ -53,7 +53,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     private let addCityButton: UIButton = {
         let button = UIButton()
-        button.setTitle("  Add Location", for: .normal)
+        button.setTitle(" Add Location", for: .normal)
         button.backgroundColor = nil
         button.setTitleColor(UIColor(red: 251/255, green: 249/255, blue: 158/255, alpha: 1), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18.0, weight: .bold)
@@ -128,33 +128,25 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         currentLocationLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         currentLocationLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        currentLocationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
         
         currentLocation.topAnchor.constraint(equalTo: currentLocationLabel.bottomAnchor, constant: 20).isActive = true
         currentLocation.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        currentLocation.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
         
         addCityButton.translatesAutoresizingMaskIntoConstraints = false
         addCityButton.topAnchor.constraint(equalTo: currentLocation.bottomAnchor, constant: 130).isActive = true
-        addCityButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        addCityButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        addCityButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         
         addCityButton1.translatesAutoresizingMaskIntoConstraints = false
         addCityButton1.topAnchor.constraint(equalTo: addCityButton.bottomAnchor, constant: 30).isActive = true
-        addCityButton1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        addCityButton1.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        addCityButton1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         
         addCityButton2.translatesAutoresizingMaskIntoConstraints = false
         addCityButton2.topAnchor.constraint(equalTo: addCityButton1.bottomAnchor, constant: 30).isActive = true
-        addCityButton2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        addCityButton2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        addCityButton2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         
         addCityButton3.translatesAutoresizingMaskIntoConstraints = false
         addCityButton3.topAnchor.constraint(equalTo: addCityButton2.bottomAnchor, constant: 30).isActive = true
-        addCityButton3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        addCityButton3.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        addCityButton3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: addCityButton3.bottomAnchor, constant: 200).isActive = true
@@ -250,17 +242,23 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func addPlaceBerlin() {
         let cityName: String? = "Berlin"
-        print("City Name: \(cityName!)")
+        print("\nCity Name: \(cityName!)")
         guard let cityname = cityName else { return }
                     loadData(city: cityname)
      }
     
     @objc func addPlaceLiverpool() {
-        self.loadData(city: "Liverpool, UK")
+        let cityName: String? = "Liverpool"
+        print("\nCity Name: \(cityName!)")
+        guard let cityname = cityName else { return }
+                    loadData(city: cityname)
      }
     
     @objc func addPlaceWashington() {
-        self.loadData(city: "Washington, USA")
+        let cityName: String? = "Washington"
+        print("\nCity Name: \(cityName!)")
+        guard let cityname = cityName else { return }
+                    loadData(city: cityname)
      }
 }
 

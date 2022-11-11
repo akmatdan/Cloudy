@@ -7,6 +7,7 @@
 import UIKit
 
 class WeatherNetworkManager : NetworkManagerProtocol {
+    
     func fetchCurrentLocationWeather(lat: String, lon: String, completion: @escaping (WeatherModel) -> ()) {
             let API_URL = "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(NetworkProperties.API_KEY)"
             
@@ -25,9 +26,7 @@ class WeatherNetworkManager : NetworkManagerProtocol {
                          
             }.resume()
         }
-        
-        
-        
+
         func fetchCurrentWeather(city: String, completion: @escaping (WeatherModel) -> ()) {
             let formattedCity = city.replacingOccurrences(of: " ", with: "+")
             let API_URL = "http://api.openweathermap.org/data/2.5/weather?q=\(formattedCity)&appid=\(NetworkProperties.API_KEY)"
@@ -44,12 +43,9 @@ class WeatherNetworkManager : NetworkManagerProtocol {
                      } catch {
                          print(error)
                      }
-                         
             }.resume()
         }
-        
-        
-        
+
         func fetchNextFiveWeatherForecast(city: String, completion: @escaping ([ForecastTemperature]) -> ()) {
             let formattedCity = city.replacingOccurrences(of: " ", with: "+")
             let API_URL = "http://api.openweathermap.org/data/2.5/forecast?q=\(formattedCity)&appid=\(NetworkProperties.API_KEY)"
@@ -60,7 +56,6 @@ class WeatherNetworkManager : NetworkManagerProtocol {
             var fourthDayTemp = ForecastTemperature(weekDay: nil, hourlyForecast: nil)
             var fifthDayTemp = ForecastTemperature(weekDay: nil, hourlyForecast: nil)
             var sixthDayTemp = ForecastTemperature(weekDay: nil, hourlyForecast: nil)
-            
         
             guard let url = URL(string: API_URL) else {
                      fatalError()
@@ -83,7 +78,6 @@ class WeatherNetworkManager : NetworkManagerProtocol {
                         var fifthDayForecast : [WeatherInfo] = []
                         var sixthDayForecast : [WeatherInfo] = []
                         
-                        print("Total data:", forecastWeather.list.count)
                         var totalData = forecastWeather.list.count //Should be 40 all the time
                         
                         for day in 0...forecastWeather.list.count - 1 {
@@ -122,24 +116,20 @@ class WeatherNetworkManager : NetworkManagerProtocol {
                                 let info = WeatherInfo(temp: mainTemp, min_temp: minTemp, max_temp: maxTemp, description: descriptionTemp, icon: icon, time: time)
                                 currentDayForecast.append(info)
                                 currentDayTemp = ForecastTemperature(weekDay: currentweekdaysymbol, hourlyForecast: currentDayForecast)
-                                print("1")
                                 fetchedData.append(info)
                             }else if weekdaycomponent == currentWeekDay.incrementWeekDays(by: 1) {
                                 let info = WeatherInfo(temp: mainTemp, min_temp: minTemp, max_temp: maxTemp, description: descriptionTemp, icon: icon, time: time)
                                 secondDayForecast.append(info)
                                 secondDayTemp = ForecastTemperature(weekDay: weekday, hourlyForecast: secondDayForecast)
-                                print("2")
                                 fetchedData.append(info)
                             }else if weekdaycomponent == currentWeekDay.incrementWeekDays(by: 2) {
                                 let info = WeatherInfo(temp: mainTemp, min_temp: minTemp, max_temp: maxTemp, description: descriptionTemp, icon: icon, time: time)
                                 thirddayDayForecast.append(info)
-                                print("3")
                                 thirdDayTemp = ForecastTemperature(weekDay: weekday, hourlyForecast: thirddayDayForecast)
                                 fetchedData.append(info)
                             }else if weekdaycomponent == currentWeekDay.incrementWeekDays(by: 3) {
                                 let info = WeatherInfo(temp: mainTemp, min_temp: minTemp, max_temp: maxTemp, description: descriptionTemp, icon: icon, time: time)
                                 fourthDayDayForecast.append(info)
-                                print("4")
                                 fourthDayTemp = ForecastTemperature(weekDay: weekday, hourlyForecast: fourthDayDayForecast)
                                 fetchedData.append(info)
                             }else if weekdaycomponent == currentWeekDay.incrementWeekDays(by: 4){
@@ -147,13 +137,11 @@ class WeatherNetworkManager : NetworkManagerProtocol {
                                 fifthDayForecast.append(info)
                                 fifthDayTemp = ForecastTemperature(weekDay: weekday, hourlyForecast: fifthDayForecast)
                                 fetchedData.append(info)
-                                print("5")
                             }else if weekdaycomponent == currentWeekDay.incrementWeekDays(by: 5) {
                                 let info = WeatherInfo(temp: mainTemp, min_temp: minTemp, max_temp: maxTemp, description: descriptionTemp, icon: icon, time: time)
                                 sixthDayForecast.append(info)
                                 sixthDayTemp = ForecastTemperature(weekDay: weekday, hourlyForecast: sixthDayForecast)
                                 fetchedData.append(info)
-                                print("6")
                             }
 
                             
@@ -183,23 +171,18 @@ class WeatherNetworkManager : NetworkManagerProtocol {
                                     forecastmodelArray.append(sixthDayTemp)
                                 }
                                 
-    //                            if seventhDayTemp.hourlyForecast?.count ?? 0 > 0{
-    //                                forecastmodelArray.append(seventhDayTemp)
-    //                            }
+//                                if seventhDayTemp.hourlyForecast?.count ?? 0 > 0{
+//                                    forecastmodelArray.append(seventhDayTemp)
+//                                }
                                 
-                                if forecastmodelArray.count <= 6 {
+                                if forecastmodelArray.count <= 7 {
                                     completion(forecastmodelArray)
                                 }
-                                
                             }
-                            
-                         
-                            
                         }
                      } catch {
                          print(error)
                      }
-                         
             }.resume()
         }
 }
